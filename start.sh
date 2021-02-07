@@ -4,7 +4,7 @@
 procs=$(cat /proc/cpuinfo | grep processor | wc -l)
 sed -i -e "s/worker_processes  1/worker_processes $procs/" /etc/nginx/nginx.conf
 sed -i -e "s/listen 80/listen $NGINX_PORT/" /etc/nginx/nginx.conf
-sed -i -e "s/listen   [::]:80/listen [::]:$NGINX_PORT/" /etc/nginx/nginx.conf
+sed -i -e "s/listen [::]:80/listen [::]:$NGINX_PORT/" /etc/nginx/nginx.conf
 # Always chown webroot for better mounting
 chown -Rf nginx.nginx /usr/share/nginx/html
 
