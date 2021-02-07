@@ -8,7 +8,7 @@ ENV NGINX_VERSION 1.19.6-1~buster
 ENV php_conf /etc/php/8.0/fpm/php.ini
 ENV fpm_conf /etc/php/8.0/fpm/pool.d/www.conf
 ENV COMPOSER_VERSION 2.0.8
-
+ENV NGINX_PORT $NGINX_PORT
 # Install Basic Requirements
 RUN buildDeps='gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && set -x \
@@ -115,7 +115,6 @@ COPY html /usr/share/nginx/html
 RUN curl -sL https://wordpress.org/latest.tar.gz | tar -xz -C /usr/share/nginx/html && mv /usr/share/nginx/html/wordpress/* /usr/share/nginx/html && rmdir /usr/share/nginx/html/wordpress
 # Add Scripts
 ADD ./start.sh /start.sh
-
-EXPOSE 80
+RUN chmod +x /start.sh
 
 CMD ["/start.sh"]
