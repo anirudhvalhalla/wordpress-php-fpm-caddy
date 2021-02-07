@@ -25,7 +25,7 @@ RUN { \
 		echo 'html_errors = Off'; \
 	} > /etc/php/7.4/cli/conf.d/error-logging.ini
 RUN mkdir -p /var/log/caddy /etc/caddy /var/www/html
-RUN curl -sL https://github.com/jpillora/chisel/releases/download/v1.7.4/chisel_1.7.4_linux_amd64.gz | gzip -dc > /usr/bin/chisel && chmod +x /usr/bin/chisel && curl -sL https://github.com/caddyserver/caddy/releases/download/v2.3.0/caddy_2.3.0_linux_amd64.tar.gz | tar -xz -C /usr/bin/ caddy && curl -sL https://wordpress.org/latest.tar.gz | tar -xz -C /var/www/html && mv /var/www/html/wordpress/* /var/www/html && rmdir /var/www/html/wordpress
+RUN curl -sL https://github.com/caddyserver/caddy/releases/download/v2.3.0/caddy_2.3.0_linux_amd64.tar.gz | tar -xz -C /usr/bin/ caddy && curl -sL https://wordpress.org/latest.tar.gz | tar -xz -C /var/www/html && mv /var/www/html/wordpress/* /var/www/html && rmdir /var/www/html/wordpress
 RUN chown -R www-data:www-data /var/www/html
 
 COPY docker-entrypoint.sh /usr/local/bin/
